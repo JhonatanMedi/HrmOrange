@@ -12,7 +12,6 @@ import OrangeHrm.Steps.Questions;
 
 public class UserManagementPage {
 	
-	private WebDriver driver;
 	private ButtonPages buttonPages;
 	private ListPages listPages;
 	private Questions questions;

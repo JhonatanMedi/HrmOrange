@@ -3,6 +3,7 @@ package OrangeHrm.Definitions;
 import org.openqa.selenium.WebDriver;
 
 import OrangeHrm.Pages.LoginPage;
+import OrangeHrm.Pages.PimPage;
 import OrangeHrm.Pages.UserManagementPage;
 import OrangeHrm.Steps.Conexion;
 import cucumber.api.java.en.Given;
@@ -15,6 +16,7 @@ public class DefinitionsSteps {
 	private Conexion conexion = new Conexion();
 	private LoginPage loginPage = new LoginPage(driver);
 	private UserManagementPage userManagementPage = new UserManagementPage(driver);
+	private PimPage pimPage = new PimPage(driver);
 
 	@Given("^abrir el navegador$")
 	public void abrir_navegador() {
@@ -36,4 +38,9 @@ public class DefinitionsSteps {
 		this.userManagementPage.searchUser(usuario, useRol);
 	}
 
+	@Then("^al hacer en el boton pim y hacer clic add employee nombre (.*) apellido (.*)$")
+	public void diligienciarFormulario(String nombre, String apellido) {
+		this.pimPage = new PimPage (driver);
+		this.pimPage.addEmployee(nombre, apellido);
+	}
 }

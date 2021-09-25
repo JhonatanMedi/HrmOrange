@@ -66,9 +66,9 @@ public class Questions {
 	}
 	
 	@Step
-	public void assertFirstName(String firtName, String lastName) {
+	public void assertFirstName(String nombre, String apellido) {
 		String usurio = driver.findElement(By.xpath("//*[@id='profile-pic']/h1")).getText();
-		Assert.assertEquals(usurio, firtName + " " + lastName);
+		Assert.assertEquals(usurio, nombre + " " + apellido);
 
 	}
 	

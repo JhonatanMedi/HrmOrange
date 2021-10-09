@@ -26,14 +26,14 @@ public class UserManagementPage {
 		this.questions = new Questions(driver);
 	}
 	
-	public void searchUser(String usuario, String useRol) {
+	public void searchUser(String user, String useRol) {
 		questions.tiempoSegundos(1);
 		questions.screenShot();
 		buttonPages.btnAdmin();
 		//inputUsuario.sendKeys(usuario);
 		listPages.listRoles(useRol);
 		buttonPages.btnSearch();
-		questions.scrollSeach(usuario);
+		questions.scrollSeach(user);
 		questions.screenShot();
 	}
 

@@ -17,4 +17,8 @@ public class ListPages {
 		role.click();
 	}
 
+	public void listSubUnit(String subUnit) {
+		WebElement listSubUnit = driver.findElement(By.xpath("//select/option[text() = '" + subUnit + "']"));
+		listSubUnit.click();
+	}
 }

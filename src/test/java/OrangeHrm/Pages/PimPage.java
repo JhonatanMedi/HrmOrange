@@ -10,31 +10,54 @@ import OrangeHrm.Steps.ButtonPages;
 import OrangeHrm.Steps.Questions;
 
 public class PimPage {
-	
-	private WebDriver driver;
+
 	private ButtonPages buttonPages;
 	private Questions questions;
-	
+
 	@FindBy(how = How.ID, using = "firstName")
 	private WebElement inputFirtName;
-	
+
 	@FindBy(how = How.ID, using = "lastName")
 	private WebElement inputLastName;
-	
+
+	@FindBy(how = How.ID, using = "firstName")
+	private WebElement txtFirstName;
+
+	@FindBy(how = How.ID, using = "lastName")
+	private WebElement txtLastName;
+
 	public PimPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 		this.buttonPages = new ButtonPages(driver);
 		this.questions = new Questions(driver);
-		
+
 	}
-	
-	public void addEmployee(String nombre, String apellido) {
+
+/*	public void addEmployee(String firtName, String lastName) {
 		buttonPages.btnPim();
 		buttonPages.btnAddEmployee();
-		inputFirtName.sendKeys(nombre);
-		inputLastName.sendKeys(apellido);
+		inputFirtName.sendKeys(firtName);
+		inputLastName.sendKeys(lastName);
 		questions.tiempoSegundos(1);
 		buttonPages.btnSave();
-		questions.assertFirstName(nombre, apellido);
+		questions.assertFirstName(firtName, lastName);
+	}*/
+	
+	public void diligenciarAddEmployee() {
+		buttonPages.btnPim();
+		buttonPages.btnAddEmployee();
+
 	}
+
+	public void llenarAddEmployee(String firtName, String lastName) {
+		txtFirstName.sendKeys(firtName);
+		txtLastName.sendKeys(lastName);
+		buttonPages.btnSave();
+		questions.tiempoSegundos(1);
+		questions.assertWelcome();
+		questions.tiempoSegundos(1);
+		questions.assertFirstName(firtName, lastName);
+
+	}
+
 }

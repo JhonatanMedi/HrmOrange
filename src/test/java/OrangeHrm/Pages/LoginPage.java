@@ -11,7 +11,6 @@ import OrangeHrm.Steps.Questions;
 
 public class LoginPage {
 
-	private WebDriver driver;
 	private ButtonPages buttonPages;
 	private Questions questions;
 
@@ -27,12 +26,12 @@ public class LoginPage {
 		this.questions = new Questions(driver);
 	}
 
-	public void loginIn(String userName, String contrasena) {
+	public void loginIn(String userName, String password) {
 		txtUserName.isDisplayed();
 		txtUserName.sendKeys(userName);
-		inputPassword.sendKeys(contrasena);
+		inputPassword.sendKeys(password);
 		buttonPages.btnLogin();
-	//	questions.assertWelcome();
+		questions.assertWelcome();
 	}
 
 }

@@ -12,7 +12,7 @@ public class Conexion {
 
 	@Before
 	@Step
-	public WebDriver abrirNavegador() {
+	public WebDriver openNavegado() {
 		System.setProperty("webdriver.chrome.driver", "Drivers/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();

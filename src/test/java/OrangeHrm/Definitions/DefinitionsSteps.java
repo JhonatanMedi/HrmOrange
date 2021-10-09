@@ -2,10 +2,14 @@ package OrangeHrm.Definitions;
 
 import org.openqa.selenium.WebDriver;
 
+import OrangeHrm.Pages.LeavePage;
 import OrangeHrm.Pages.LoginPage;
 import OrangeHrm.Pages.PimPage;
 import OrangeHrm.Pages.UserManagementPage;
 import OrangeHrm.Steps.Conexion;
+import OrangeHrm.Steps.Questions;
+import OrangeHrm.Steps.TablesPages;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -17,30 +21,60 @@ public class DefinitionsSteps {
 	private LoginPage loginPage = new LoginPage(driver);
 	private UserManagementPage userManagementPage = new UserManagementPage(driver);
 	private PimPage pimPage = new PimPage(driver);
+	private LeavePage leavePage = new LeavePage(driver);
+	private TablesPages tablesPages = new TablesPages(driver);
+	private Questions questions = new Questions (driver);
 
-	@Given("^abrir el navegador$")
+	@Given("^open navegador$")
 	public void abrir_navegador() {
 		this.conexion = new Conexion();
-		this.driver = this.conexion.abrirNavegador();
+		this.driver = this.conexion.openNavegado();
 
 	}
 	
-	@When("^diligencie los campos nombre (.*) y contraseña (.*)$")
-	public void login(String userName, String contrasena) {
+	@When("^fill out username (.*) and password (.*)$")
+	public void login(String userName, String password) {
 		this.loginPage  = new LoginPage(driver);
-		this.loginPage.loginIn(userName, contrasena);
+		this.loginPage.loginIn(userName, password);
 		
 	}
 	
-	@Then("^haga en el boton admin y buscar usuario (.*) y rol (.*)$")
-	public void searchUser(String usuario, String useRol) {
+	@Then("^to access on the option admin and search user (.*) and rol (.*)$")
+	public void searchUser(String user, String useRol) {
 		this.userManagementPage = new UserManagementPage(driver);
-		this.userManagementPage.searchUser(usuario, useRol);
+		this.userManagementPage.searchUser(user, useRol);
 	}
 
-	@Then("^al hacer en el boton pim y hacer clic add employee nombre (.*) apellido (.*)$")
-	public void diligienciarFormulario(String nombre, String apellido) {
+	@Then("^Select list sub unit (.*)$")
+	public void searchLeave(String subUnit) {
+		this.leavePage = new LeavePage(driver);
+		this.leavePage.searchLeave(subUnit);
+		
+	}
+	
+	@And("^search on the table (.*) select in the action (.*)$")
+	public void buscarTabla(String nameSearch, String actions) {
+		this.tablesPages = new TablesPages(driver);
+		this.tablesPages.tableLeave(nameSearch,actions);
+		
+	}
+	
+	@Then("^close navigator$")
+	public void closeNavigator() {
+		this.questions = new Questions(driver);
+		this.questions.closeNavigator();
+	}
+	
+	@And("^to access on the option add employee$")
+	public void addEmployee() {
 		this.pimPage = new PimPage (driver);
-		this.pimPage.addEmployee(nombre, apellido);
+		this.pimPage.diligenciarAddEmployee();
+	}
+	
+	@Then("^fill out first name (.*) and last name (.*)$")
+	public void diligenciarEmployee(String firtName, String lastName) {
+		this.pimPage = new PimPage(driver);
+		this.pimPage.llenarAddEmployee(firtName, lastName);
+		
 	}
 }

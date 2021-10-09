@@ -72,11 +72,20 @@ public class Questions {
 
 	}
 	
-	public void scrollSeach(String usuario) {
-		WebElement result = driver.findElement(By.xpath("//table//*[text() = '"+usuario+"']"));
+	public void scrollSeach(String user) {
+		WebElement result = driver.findElement(By.xpath("//table//*[text() = '"+user+"']"));
 		JavascriptExecutor scroll = (JavascriptExecutor) driver;
 		scroll.executeScript("arguments[0].scrollIntoView();", result);
 
 	}
+	
+	public void scrollSeach() {
+		WebElement result = driver.findElement(By.id("frmList_ohrmListComponent"));
+		JavascriptExecutor scroll = (JavascriptExecutor) driver;
+		scroll.executeScript("arguments[0].scrollIntoView();", result);
 
+	}
+	public void closeNavigator() {
+		driver.close();
+	}
 }
